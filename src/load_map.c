@@ -1,0 +1,92 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   load_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pauberna <pauberna@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/17 16:17:08 by pauberna          #+#    #+#             */
+/*   Updated: 2024/02/14 16:48:20 by pauberna         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "so_long.h"
+
+void	load_imgs(t_vars *vars, int move)
+{
+	vars->map = load_map_imgs(vars);
+	vars->player = load_player_imgs(vars);
+	vars->background = new_img(get_map_width(vars->og_map) * 64, get_map_height(vars->og_map) * 64, vars->mlx, vars->win);
+	load_background(vars->og_map, vars->map, vars->background);
+	if (vars->player_size == 1)
+		load_layer2(vars, DOWN);
+	else
+		load_layer2(vars, move);
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->background->img, 0, 0);
+	free_map_imgs(vars->mlx, vars->map);
+	mlx_destroy_image(vars->mlx, vars->background->img);
+	free(vars->background);
+}
+
+void	load_background(char **map, t_map *img, t_imgs *background)
+{
+	int	i;
+	int	n;
+	int	width;
+	int	height;
+
+	i = 0;
+	height = 0;
+	while (map[i])
+	{
+		n = 0;
+		width = 0;
+		while (map[i][n] && map[i][n] != '\n')
+		{
+			if (map[i][n] == '1')
+				put_img_to_img(background, img->wall, width, height);
+			else
+				put_img_to_img(background, img->grnd, width, height);
+			width = width + 64;
+			n++;
+		}
+		height = height + 64;
+		i++;
+	}
+}
+
+t_map	*load_map_imgs(t_vars *vars)
+{
+	t_map	*map;
+
+	map = (t_map *)malloc(sizeof(t_map));
+	map->wall = new_file_img("./textures/Wall.xpm", vars->mlx, vars->win);
+	map->grnd = new_file_img("./textures/Floor.xpm", vars->mlx, vars->win);
+	map->coll = new_file_img("./textures/Collectible.xpm", vars->mlx, vars->win);
+	map->exit = new_file_img("./textures/Exit.xpm", vars->mlx, vars->win);
+	return (map);
+}
+
+void	free_map_imgs(t_vars *mlx, t_map *map)
+{
+	mlx_destroy_image(mlx, map->wall->img);
+	free(map->wall);
+	mlx_destroy_image(mlx, map->grnd->img);
+	free(map->grnd);
+	mlx_destroy_image(mlx, map->coll->img);
+	free(map->coll);
+	mlx_destroy_image(mlx, map->exit->img);
+	free(map->exit);
+	free(map);
+}
+
+t_player	*load_player_imgs(t_vars *vars)
+{
+	t_player	*player;
+
+	player = (t_player *)malloc(sizeof(t_player));
+	load_player_head(player, vars);
+	load_player_body(player, vars);
+	load_player_tail(player, vars);
+	return (player);
+}
