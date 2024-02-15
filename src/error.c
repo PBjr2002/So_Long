@@ -6,7 +6,7 @@
 /*   By: pauberna <pauberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 10:27:41 by pauberna          #+#    #+#             */
-/*   Updated: 2024/02/14 17:12:22 by pauberna         ###   ########.fr       */
+/*   Updated: 2024/02/15 17:25:01 by pauberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,18 @@ void	ft_clear_lst(t_list *pos)
 		pos = next_node;
 	}
 	pos = NULL;
+}
+
+int	quit_game(t_vars *vars, int signal)
+{
+	free(vars->timer);
+	free_player(vars);
+	ft_clear_lst(vars->pos);
+	free_map(vars->p_map);
+	free_map(vars->og_map);
+	mlx_destroy_window(vars->mlx, vars->win);
+	mlx_destroy_display(vars->mlx);
+	free(vars->mlx);
+	exit(signal);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: pauberna <pauberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 10:46:28 by pauberna          #+#    #+#             */
-/*   Updated: 2024/01/18 11:08:39 by pauberna         ###   ########.fr       */
+/*   Updated: 2024/02/15 17:25:38 by pauberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,26 @@ int	check_for_stuff(char **map)
 
 int	validate_map(char **map)
 {
-	if (is_retangular(map) == -1 || check_for_stuff(map) == -1 
-		|| check_for_walls(map) == -1 || check_for_invalid_content(map) == -1 
+	if (is_retangular(map) == -1 || check_for_stuff(map) == -1
+		|| check_for_walls(map) == -1 || check_for_invalid_content(map) == -1
 		|| there_is_a_way(map) == -1)
 	{
 		free_map(map);
 		return (-1);
 	}
+	return (0);
+}
+
+int	check_file_name(char *map_name)
+{
+	int	len;
+
+	len = ft_strlen(map_name);
+	if (map_name == NULL)
+		return (-1);
+	if (len < 5)
+		return (-1);
+	if (ft_strcmp(map_name + len - 4, ".ber") != 0)
+		return (-1);
 	return (0);
 }

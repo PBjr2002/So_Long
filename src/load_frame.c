@@ -6,7 +6,7 @@
 /*   By: pauberna <pauberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 10:17:12 by pauberna          #+#    #+#             */
-/*   Updated: 2024/02/14 17:12:59 by pauberna         ###   ########.fr       */
+/*   Updated: 2024/02/15 19:46:20 by pauberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	load_frame(t_vars vars, int move)
 	char	*new_mstr;
 
 	load_imgs(&vars, move);
+	if (vars.player_size == 1)
+		vars.player_size++;
 	mlx_hook(vars.win, DestroyNotify, StructureNotifyMask, quit_game, &vars);
 	mlx_hook(vars.win, KeyPress, KeyPressMask, check_key, &vars);
 	move_str = ft_itoa(vars.moves);
@@ -29,96 +31,62 @@ void	load_frame(t_vars vars, int move)
 	mlx_loop(vars.mlx);
 }
 
-int	repeat_key(t_vars *vars)
+int	check_key(int kc, t_vars *vars)
 {
-	if (vars->last_KC == XK_a || vars->last_KC == XK_Left)
-		move_player(vars, LEFT, vars->p_map);
-	else if (vars->last_KC == XK_d || vars->last_KC == XK_Right)
-		move_player(vars, RIGHT, vars->p_map);
-	else if (vars->last_KC == XK_w || vars->last_KC == XK_Up)
-		move_player(vars, UP, vars->p_map);
-	else if (vars->last_KC == XK_s || vars->last_KC == XK_Down)
-		move_player(vars, DOWN, vars->p_map);
-	return (1);
-}
-
-int	check_key(int keycode, t_vars *vars)
-{
-	if ((vars->last_KC != XK_d && vars->last_KC != XK_Right) && (keycode == XK_a || keycode == XK_Left))
-	{
-		vars->last_KC = keycode;
-		move_player(vars, LEFT, vars->p_map);
-	}
-	else if ((vars->last_KC != XK_a && vars->last_KC != XK_Left) && (keycode == XK_d || keycode == XK_Right))
-	{
-		vars->last_KC = keycode;
-		move_player(vars, RIGHT, vars->p_map);
-	}
-	else if ((vars->last_KC != XK_s && vars->last_KC != XK_Down) && (keycode == XK_w || keycode == XK_Up))
-	{
-		vars->last_KC = keycode;
-		move_player(vars, UP, vars->p_map);
-	}
-	else if ((vars->last_KC != XK_w && vars->last_KC != XK_Up) && (keycode == XK_s || keycode == XK_Down))
-	{
-		vars->last_KC = keycode;
-		move_player(vars, DOWN, vars->p_map);
-	}
-	else if (keycode == XK_Escape)
+	if ((vars->last_kc != XK_w && vars->last_kc != XK_Up)
+		&& (kc == XK_s || kc == XK_Down))
+		check_up_or_down(vars, kc);
+	else if ((vars->last_kc != XK_s && vars->last_kc != XK_Down)
+		&& (kc == XK_w || kc == XK_Up))
+		check_up_or_down(vars, kc);
+	else if ((vars->last_kc != XK_a && vars->last_kc != XK_Left)
+		&& (kc == XK_d || kc == XK_Right))
+		check_left_or_right(vars, kc);
+	else if ((vars->last_kc != XK_d && vars->last_kc != XK_Right)
+		&& (kc == XK_a || kc == XK_Left))
+		check_left_or_right(vars, kc);
+	else if (kc == XK_Escape)
 		quit_game(vars, EXIT_SUCCESS);
 	return (1);
 }
 
-int	quit_game(t_vars *vars, int signal)
+int	repeat_key(t_vars *vars)
 {
-	free(vars->timer);
-	free_player(vars);
-	ft_clear_lst(vars->pos);
-	free_map(vars->p_map);
-	free_map(vars->og_map);
-	mlx_destroy_window(vars->mlx, vars->win);
-	mlx_destroy_display(vars->mlx);
-	free(vars->mlx);
-	exit(signal);
-	return (0);
+	if (vars->last_kc == XK_a || vars->last_kc == XK_Left)
+		move_player(vars, LEFT, vars->p_map);
+	else if (vars->last_kc == XK_d || vars->last_kc == XK_Right)
+		move_player(vars, RIGHT, vars->p_map);
+	else if (vars->last_kc == XK_w || vars->last_kc == XK_Up)
+		move_player(vars, UP, vars->p_map);
+	else if (vars->last_kc == XK_s || vars->last_kc == XK_Down)
+		move_player(vars, DOWN, vars->p_map);
+	return (1);
 }
 
-int	get_head_x(char **map)
+void	check_up_or_down(t_vars *vars, int kc)
 {
-	int	n;
-	int	i;
-
-	n = 0;
-	while (map[n])
+	if (kc == XK_w || kc == XK_Up)
 	{
-		i = 0;
-		while (map[n][i] != '\n' && map[n][i])
-		{
-			if (map[n][i] == 'P')
-				return (i);
-			i++;
-		}
-		n++;
+		vars->last_kc = kc;
+		move_player(vars, UP, vars->p_map);
 	}
-	return (0);
+	else if (kc == XK_s || kc == XK_Down)
+	{
+		vars->last_kc = kc;
+		move_player(vars, DOWN, vars->p_map);
+	}
 }
 
-int	get_head_y(char **map)
+void	check_left_or_right(t_vars *vars, int kc)
 {
-	int	n;
-	int	i;
-
-	n = 0;
-	while (map[n])
+	if (kc == XK_a || kc == XK_Left)
 	{
-		i = 0;
-		while (map[n][i] != '\n' && map[n][i])
-		{
-			if (map[n][i] == 'P')
-				return (n);
-			i++;
-		}
-		n++;
+		vars->last_kc = kc;
+		move_player(vars, LEFT, vars->p_map);
 	}
-	return (0);
+	else if (kc == XK_d || kc == XK_Right)
+	{
+		vars->last_kc = kc;
+		move_player(vars, RIGHT, vars->p_map);
+	}
 }

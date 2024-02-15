@@ -6,7 +6,7 @@
 /*   By: pauberna <pauberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:30:32 by pauberna          #+#    #+#             */
-/*   Updated: 2024/02/14 15:04:02 by pauberna         ###   ########.fr       */
+/*   Updated: 2024/02/15 18:57:36 by pauberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,46 +15,86 @@
 void	create_player_map(t_vars *vars)
 {
 	char	**map;
-	int		x;
-	int		y;
 	int		n;
-	int		i;
-	
-	map = (char **)malloc(sizeof(char *) * ((get_map_height(vars->og_map) * 2) + 1));
+
+	map = (char **)malloc(sizeof(char *)
+			* ((get_map_height(vars->og_map) * 2) + 1));
 	n = 0;
 	while (n < (get_map_height(vars->og_map) * 2))
 	{
 		map[n] = ft_calloc(sizeof(char), (get_map_width(vars->og_map) * 2) + 1);
 		n++;
 	}
-	y = 0;
-	n = 0;
-	while (vars->og_map[y])
+	fill_p_map(vars, map);
+	map[n] = NULL;
+	vars->p_map = map;
+}
+
+void	fill_p_map(t_vars *vars, char **map)
+{
+	int		x;
+	int		y;
+
+	y = -1;
+	while (vars->og_map[++y])
 	{
-		x = 0;
-		i = 0;
-		while (vars->og_map[y][x] && vars->og_map[y][x] != '\n')
+		x = -1;
+		while (vars->og_map[y][++x] && vars->og_map[y][x] != '\n')
 		{
 			if (vars->og_map[y][x] == 'P')
 			{
-				map[n][i] = vars->og_map[y][x];
-				map[n][i + 1] = '0';
-				map[n + 1][i] = '0';
-				map[n + 1][i + 1] = '0';
+				map[(y * 2)][(x * 2)] = vars->og_map[y][x];
+				map[(y * 2)][(x * 2) + 1] = '0';
+				map[(y * 2) + 1][(x * 2)] = '0';
+				map[(y * 2) + 1][(x * 2) + 1] = '0';
 			}
 			else
 			{
-				map[n][i] = vars->og_map[y][x];
-				map[n][i + 1] = vars->og_map[y][x];
-				map[n + 1][i] = vars->og_map[y][x];
-				map[n + 1][i + 1] = vars->og_map[y][x];
+				map[(y * 2)][(x * 2)] = vars->og_map[y][x];
+				map[(y * 2)][(x * 2) + 1] = vars->og_map[y][x];
+				map[(y * 2) + 1][(x * 2)] = vars->og_map[y][x];
+				map[(y * 2) + 1][(x * 2) + 1] = vars->og_map[y][x];
 			}
-			i = i + 2;
-			x++;
 		}
-		n = n + 2;
-		y++;
 	}
-	map[n] = NULL;
-	vars->p_map = map;
+}
+
+int	get_head_x(char **map)
+{
+	int	n;
+	int	i;
+
+	n = 0;
+	while (map[n])
+	{
+		i = 0;
+		while (map[n][i] != '\n' && map[n][i])
+		{
+			if (map[n][i] == 'P')
+				return (i);
+			i++;
+		}
+		n++;
+	}
+	return (0);
+}
+
+int	get_head_y(char **map)
+{
+	int	n;
+	int	i;
+
+	n = 0;
+	while (map[n])
+	{
+		i = 0;
+		while (map[n][i] != '\n' && map[n][i])
+		{
+			if (map[n][i] == 'P')
+				return (n);
+			i++;
+		}
+		n++;
+	}
+	return (0);
 }

@@ -5,7 +5,7 @@ NAME = so_long
 SRC = $(addprefix src/, $(SOURCES))
 SOURCES = so_long.c check_map.c check_map2.c flood_fill.c map_utils.c load_map.c load_player.c\
 			load_transparency.c load_layer2.c free_imgs.c movement.c load_frame.c error.c\
-			create_player_map.c
+			create_player_map.c print_body.c movement_utils.c change_map_utils.c
 
 OBJS_DIR = obj
 OBJECTS = $(addprefix $(OBJS_DIR)/, $(SRC:src/%.c=%.o))
