@@ -6,7 +6,7 @@
 /*   By: pauberna <pauberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 10:12:27 by pauberna          #+#    #+#             */
-/*   Updated: 2024/02/15 19:49:35 by pauberna         ###   ########.fr       */
+/*   Updated: 2024/02/18 15:21:54 by pauberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,9 @@ int				repeat_key(t_vars *vars);
 void			check_up_or_down(t_vars *vars, int kc);
 void			check_left_or_right(t_vars *vars, int kc);
 void			move_player(t_vars *vars, int move, char **map);
-void			do_the_move(t_vars *vars, int move, int x, int y);
+void			do_the_move(t_vars *vars, int move);
+void			check_move(t_vars *vars, int move, int x, int y);
+int				decide_move(t_vars *vars, int move);
 int				get_head_x(char **map);
 int				get_head_y(char **map);
 int				is_there_a_wall(t_vars *vars, int x, int y);
@@ -182,6 +184,7 @@ void			change_map_left(t_vars *vars, int n, int i);
 
 //quiting
 int				quit_game(t_vars *vars, int signal);
+void			print_msg(t_vars *vars, int mode);
 void			ft_clear_lst(t_list *pos);
 
 #endif

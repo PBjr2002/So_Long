@@ -6,7 +6,7 @@
 /*   By: pauberna <pauberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 15:51:11 by pauberna          #+#    #+#             */
-/*   Updated: 2024/02/15 19:49:55 by pauberna         ###   ########.fr       */
+/*   Updated: 2024/02/18 15:22:21 by pauberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,43 +22,38 @@ int	is_move_possible(t_list *pos, int x, int y, t_vars *vars)
 		temp = pos->next;
 	else
 		temp = pos;
+	if (is_there_a_wall(vars, x, y) == -1)
+		return (-1);
 	while (temp->next)
 	{
 		if (temp->x == x && temp->y == y)
+		{
+			print_msg(vars, -1);
 			quit_game(vars, EXIT_FAILURE);
+		}
 		temp = temp->next;
 	}
-	if (is_there_a_wall(vars, x, y) == -1)
-		return (-1);
 	return (0);
 }
 
 void	move_player(t_vars *vars, int move, char **map)
 {
+	int	x;
+	int	y;
+
+	x = get_head_x(map);
+	y = get_head_y(map);
+	if (vars->player_size == 1)
+		vars->player_size++;
 	if (move == UP)
-	{
-		if (is_move_possible(vars->pos, get_head_x(map),
-				get_head_y(map) - 1, vars) == 0)
-			do_the_move(vars, move, get_head_x(map), get_head_y(map));
-	}
+		do_the_move(vars, move);
 	else if (move == DOWN)
-	{
-		if (is_move_possible(vars->pos, get_head_x(map),
-				get_head_y(map) + 1, vars) == 0)
-			do_the_move(vars, move, get_head_x(map), get_head_y(map));
-	}
+		do_the_move(vars, move);
 	else if (move == RIGHT)
-	{
-		if (is_move_possible(vars->pos, get_head_x(map) + 1,
-				get_head_y(map), vars) == 0)
-			do_the_move(vars, move, get_head_x(map), get_head_y(map));
-	}
+		do_the_move(vars, move);
 	else if (move == LEFT)
-	{
-		if (is_move_possible(vars->pos, get_head_x(map) - 1,
-				get_head_y(map), vars) == 0)
-			do_the_move(vars, move, get_head_x(map), get_head_y(map));
-	}
+		do_the_move(vars, move);
+	check_move(vars, move, x, y);
 }
 
 void	change_map(t_vars *vars, int move)

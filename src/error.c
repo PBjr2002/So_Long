@@ -6,7 +6,7 @@
 /*   By: pauberna <pauberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 10:27:41 by pauberna          #+#    #+#             */
-/*   Updated: 2024/02/15 17:25:01 by pauberna         ###   ########.fr       */
+/*   Updated: 2024/02/18 15:40:48 by pauberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,22 @@ void	print_error(int mode)
 	else if (mode == 3)
 		ft_putstr_fd("Invalid map\n", 2);
 	exit(EXIT_FAILURE);
+}
+
+void	print_msg(t_vars *vars, int mode)
+{
+	if (mode == -1)
+		ft_putstr_fd("\nOops seems like Game Over\n", 1);
+	else if (mode == 0)
+	{
+		ft_putstr_fd("moves : ", 1);
+		ft_putnbr_fd(vars->moves, 1);
+		ft_putstr_fd("\n", 1);
+	}
+	else if (mode == 1)
+		ft_putstr_fd("\nCongrats u just beat snake 1.5!!!\n", 1);
+	else if (mode == 2)
+		ft_putstr_fd("\nDid you really gave up midway through ?\n", 1);
 }
 
 void	ft_clear_lst(t_list *pos)
