@@ -6,7 +6,7 @@
 /*   By: pauberna <pauberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 10:17:12 by pauberna          #+#    #+#             */
-/*   Updated: 2024/02/18 15:34:54 by pauberna         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:01:12 by pauberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,17 @@ void	load_frame(t_vars vars, int move)
 
 int	check_key(int kc, t_vars *vars)
 {
-	if (vars->last_kc != XK_s && kc == XK_w)
+	if (kc == XK_w && vars->last_move != DOWN)
 		check_up_or_down(vars, kc);
-	else if (vars->last_kc != XK_d && kc == XK_a)
+	else if (kc == XK_a && vars->last_move != RIGHT)
 		check_left_or_right(vars, kc);
-	else if (vars->last_kc != XK_w && kc == XK_s)
+	else if (kc == XK_s && vars->last_move != UP)
 		check_up_or_down(vars, kc);
-	else if (vars->last_kc != XK_a && kc == XK_d)
+	else if (kc == XK_d && vars->last_move != LEFT)
 		check_left_or_right(vars, kc);
 	else if (kc == XK_Escape)
 	{
-		print_msg(vars, 2);
+		print_msg(2);
 		quit_game(vars, EXIT_SUCCESS);
 	}
 	return (1);

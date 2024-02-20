@@ -6,7 +6,7 @@
 /*   By: pauberna <pauberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 10:12:27 by pauberna          #+#    #+#             */
-/*   Updated: 2024/02/18 15:21:54 by pauberna         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:00:49 by pauberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,7 +184,7 @@ void			change_map_left(t_vars *vars, int n, int i);
 
 //quiting
 int				quit_game(t_vars *vars, int signal);
-void			print_msg(t_vars *vars, int mode);
+void			print_msg(int mode);
 void			ft_clear_lst(t_list *pos);
 
 #endif
