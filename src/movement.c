@@ -6,7 +6,7 @@
 /*   By: pauberna <pauberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 15:51:11 by pauberna          #+#    #+#             */
-/*   Updated: 2024/02/21 14:09:21 by pauberna         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:39:36 by pauberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	is_move_possible(t_list *pos, int x, int y, t_vars *vars)
 	{
 		if (temp->x == x && temp->y == y)
 		{
-			print_msg(-1);
+			print_msg(3);
 			quit_game(vars, EXIT_FAILURE);
 		}
 		temp = temp->next;
