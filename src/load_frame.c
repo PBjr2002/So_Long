@@ -6,7 +6,7 @@
 /*   By: pauberna <pauberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 10:17:12 by pauberna          #+#    #+#             */
-/*   Updated: 2024/02/20 15:01:12 by pauberna         ###   ########.fr       */
+/*   Updated: 2024/02/21 11:23:31 by pauberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	check_up_or_down(t_vars *vars, int kc)
 {
 	if (kc == XK_w)
 	{
-		if (is_there_a_wall(vars, get_head_x(vars->p_map),
+		if (is_there_a_wall_or_enemy(vars, get_head_x(vars->p_map),
 				get_head_y(vars->p_map) - 1) == 0)
 		{
 			vars->last_kc = kc;
@@ -75,7 +75,7 @@ void	check_up_or_down(t_vars *vars, int kc)
 	}
 	else if (kc == XK_s)
 	{
-		if (is_there_a_wall(vars, get_head_x(vars->p_map),
+		if (is_there_a_wall_or_enemy(vars, get_head_x(vars->p_map),
 				get_head_y(vars->p_map) + 1) == 0)
 		{
 			vars->last_kc = kc;
@@ -90,7 +90,7 @@ void	check_left_or_right(t_vars *vars, int kc)
 {
 	if (kc == XK_a)
 	{
-		if (is_there_a_wall(vars, get_head_x(vars->p_map) - 1,
+		if (is_there_a_wall_or_enemy(vars, get_head_x(vars->p_map) - 1,
 				get_head_y(vars->p_map)) == 0)
 		{
 			vars->last_kc = kc;
@@ -101,7 +101,7 @@ void	check_left_or_right(t_vars *vars, int kc)
 	}
 	else if (kc == XK_d)
 	{
-		if (is_there_a_wall(vars, get_head_x(vars->p_map) + 1,
+		if (is_there_a_wall_or_enemy(vars, get_head_x(vars->p_map) + 1,
 				get_head_y(vars->p_map)) == 0)
 		{
 			vars->last_kc = kc;

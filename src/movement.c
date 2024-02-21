@@ -6,7 +6,7 @@
 /*   By: pauberna <pauberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 15:51:11 by pauberna          #+#    #+#             */
-/*   Updated: 2024/02/20 15:01:21 by pauberna         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:09:21 by pauberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	is_move_possible(t_list *pos, int x, int y, t_vars *vars)
 		temp = pos->next;
 	else
 		temp = pos;
-	if (is_there_a_wall(vars, x, y) == -1)
+	if (is_there_a_wall_or_enemy(vars, x, y) == -1)
 		return (-1);
 	while (temp->next)
 	{
@@ -96,25 +96,6 @@ void	remove_collectible(t_vars *vars, int x, int y)
 		{
 			if (i == x && n == y)
 				vars->og_map[n][i] = '0';
-			i++;
-		}
-		n++;
-	}
-}
-
-void	remove_collectible_player_map(t_vars *vars, int x, int y)
-{
-	int	n;
-	int	i;
-
-	n = 0;
-	while (vars->p_map[n])
-	{
-		i = 0;
-		while (vars->p_map[n][i] && vars->p_map[n][i] != '\n')
-		{
-			if (i == x && n == y)
-				remove_pos_coll(vars, n, i);
 			i++;
 		}
 		n++;

@@ -6,7 +6,7 @@
 /*   By: pauberna <pauberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:56:23 by pauberna          #+#    #+#             */
-/*   Updated: 2024/02/15 15:53:36 by pauberna         ###   ########.fr       */
+/*   Updated: 2024/02/21 11:09:22 by pauberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	check_for_invalid_content(char **map)
 		while (map[n][i] != '\n' && map[n][i])
 		{
 			if (map[n][i] != '1' && map[n][i] != '0' && map[n][i] != 'C'
-				&& map[n][i] != 'P' && map[n][i] != 'E')
+				&& map[n][i] != 'P' && map[n][i] != 'E' && map[n][i] != 'X')
 				return (-1);
 			i++;
 		}

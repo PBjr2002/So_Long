@@ -6,7 +6,7 @@
 /*   By: pauberna <pauberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:45:03 by pauberna          #+#    #+#             */
-/*   Updated: 2024/02/15 16:29:53 by pauberna         ###   ########.fr       */
+/*   Updated: 2024/02/21 13:49:42 by pauberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,25 @@ void	load_layer2(t_vars *vars, int move)
 {
 	int	i;
 	int	n;
-	int	wh;
-	int	ht;
 
-	i = -1;
-	ht = 0;
-	while (vars->og_map[++i])
+	i = 0;
+	while (vars->og_map[i])
 	{
-		n = -1;
-		wh = 0;
-		while (vars->og_map[i][++n])
+		n = 0;
+		while (vars->og_map[i][n])
 		{
 			if (vars->og_map[i][n] == 'E'
 				&& check_for_exit_and_colect(vars->og_map) == -1)
-				put_img_to_img(vars->bkgrnd, vars->map->exit, wh, ht);
+				put_img_to_img(vars->bkgrnd, vars->map->exit, n * 64, i * 64);
 			else if (vars->og_map[i][n] == 'E')
-				put_img_to_img(vars->bkgrnd, vars->map->grnd, wh, ht);
+				put_img_to_img(vars->bkgrnd, vars->map->grnd, n * 64, i * 64);
 			else if (vars->og_map[i][n] == 'C')
-				put_img_to_img(vars->bkgrnd, vars->map->coll, wh, ht);
-			wh = wh + 64;
+				put_img_to_img(vars->bkgrnd, vars->map->coll, n * 64, i * 64);
+			else if (vars->og_map[i][n] == 'X')
+				put_img_to_img(vars->bkgrnd, vars->map->enemy, n * 64, i * 64);
+			n++;
 		}
-		ht = ht + 64;
+		i++;
 	}
 	player_put(vars, move);
 }
@@ -45,23 +43,17 @@ void	player_put(t_vars *vars, int move)
 {
 	int	i;
 	int	n;
-	int	wh;
-	int	ht;
 
 	i = 0;
-	ht = 0;
 	while (vars->p_map[i])
 	{
 		n = 0;
-		wh = 0;
 		while (vars->p_map[i][n])
 		{
 			if (vars->p_map[i][n] == 'P')
-				load_player_imgs_aftermove(vars, wh, ht, move);
-			wh = wh + 32;
+				load_player_imgs_aftermove(vars, n * 32, i * 32, move);
 			n++;
 		}
-		ht = ht + 32;
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: pauberna <pauberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 10:12:27 by pauberna          #+#    #+#             */
-/*   Updated: 2024/02/21 11:03:00 by pauberna         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:24:36 by pauberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct s_map
 	t_imgs	*grnd;
 	t_imgs	*coll;
 	t_imgs	*exit;
+	t_imgs	*enemy;
 }				t_map;
 
 typedef struct s_timeval
@@ -163,8 +164,6 @@ void			print_v_or_h(t_vars *vars, t_list *tmp, int *wh, int *ht);
 void			print_dr_or_lu(t_vars *vars, t_list *tmp, int *wh, int *ht);
 void			print_ld_or_ur(t_vars *vars, t_list *tmp, int *wh, int *ht);
 void			remove_collectible(t_vars *vars, int x, int y);
-void			remove_collectible_player_map(t_vars *vars, int x, int y);
-void			remove_pos_coll(t_vars *vars, int n, int i);
 
 //movement
 int				check_key(int kc, t_vars *vars);
@@ -177,15 +176,16 @@ void			check_move(t_vars *vars, int move, int x, int y);
 int				decide_move(t_vars *vars, int move);
 int				get_head_x(char **map);
 int				get_head_y(char **map);
-int				is_there_a_wall(t_vars *vars, int x, int y);
+int				is_there_a_wall_or_enemy(t_vars *vars, int x, int y);
 int				is_move_possible(t_list *pos, int x, int y, t_vars *vars);
 void			change_map_up(t_vars *vars, int n, int i);
 void			change_map_down(t_vars *vars, int n, int i);
 void			change_map_right(t_vars *vars, int n, int i);
 void			change_map_left(t_vars *vars, int n, int i);
 
-//quiting
+//quiting && starting
 int				quit_game(t_vars *vars, int signal);
+void			vars_init(t_vars *vars);
 void			print_msg(int mode);
 void			ft_clear_lst(t_list *pos);
 

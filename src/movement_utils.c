@@ -6,28 +6,20 @@
 /*   By: pauberna <pauberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:27:47 by pauberna          #+#    #+#             */
-/*   Updated: 2024/02/21 11:02:31 by pauberna         ###   ########.fr       */
+/*   Updated: 2024/02/21 11:22:22 by pauberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	is_there_a_wall(t_vars *vars, int x, int y)
+int	is_there_a_wall_or_enemy(t_vars *vars, int x, int y)
 {
-	int		n;
-	int		i;
-
-	i = 0;
-	while (vars->p_map[i])
+	if (vars->p_map[y][x] == '1')
+		return (-1);
+	else if (vars->p_map[y][x] == 'X')
 	{
-		n = 0;
-		while (vars->p_map[i][n] && vars->p_map[i][n] != '\n')
-		{
-			if (vars->p_map[i][n] == '1' && i == y && n == x)
-				return (-1);
-			n++;
-		}
-		i++;
+		print_msg(-1);
+		quit_game(vars, EXIT_FAILURE);
 	}
 	return (0);
 }

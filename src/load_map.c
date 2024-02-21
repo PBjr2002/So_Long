@@ -6,7 +6,7 @@
 /*   By: pauberna <pauberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:17:08 by pauberna          #+#    #+#             */
-/*   Updated: 2024/02/15 16:36:01 by pauberna         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:12:32 by pauberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ t_map	*load_map_imgs(t_vars *vars)
 			vars->mlx, vars->win);
 	map->exit = new_file_img("./textures/Exit.xpm",
 			vars->mlx, vars->win);
+	map->enemy = new_file_img("./textures/Round_cactus.xpm",
+			vars->mlx, vars->win);
 	return (map);
 }
 
@@ -82,6 +84,8 @@ void	free_map_imgs(t_vars *mlx, t_map *map)
 	free(map->coll);
 	mlx_destroy_image(mlx, map->exit->img);
 	free(map->exit);
+	mlx_destroy_image(mlx, map->enemy->img);
+	free(map->enemy);
 	free(map);
 }
 
