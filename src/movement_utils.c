@@ -6,7 +6,7 @@
 /*   By: pauberna <pauberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:27:47 by pauberna          #+#    #+#             */
-/*   Updated: 2024/02/20 11:57:39 by pauberna         ###   ########.fr       */
+/*   Updated: 2024/02/21 11:02:31 by pauberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	do_the_move(t_vars *vars, int move)
 		}
 		gettimeofday((struct timeval *)vars->timer, NULL);
 		vars->frame = vars->timer->tv_sec * 1000000 \
-		+ vars->timer->tv_usec + (1000000 / vars->speed);
+		+ vars->timer->tv_usec + (1000000 / FRAME_R);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: pauberna <pauberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 10:12:27 by pauberna          #+#    #+#             */
-/*   Updated: 2024/02/20 15:00:49 by pauberna         ###   ########.fr       */
+/*   Updated: 2024/02/21 11:03:00 by pauberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 # define DOWN		2
 # define LEFT		3
 # define RIGHT		4
+
+# define FRAME_R	11
 
 typedef struct s_imgs
 {

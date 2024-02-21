@@ -6,7 +6,7 @@
 /*   By: pauberna <pauberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 10:12:53 by pauberna          #+#    #+#             */
-/*   Updated: 2024/02/20 15:44:25 by pauberna         ###   ########.fr       */
+/*   Updated: 2024/02/21 11:02:20 by pauberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	main(int ac, char **av)
 	vars.moves = 0;
 	vars.frame = 1;
 	vars.last_move = 2;
-	vars.speed = 10;
 	vars.timer = malloc(sizeof(t_timeval));
 	load_frame(vars, 2);
 	return (0);
