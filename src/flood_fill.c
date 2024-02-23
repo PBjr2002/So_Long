@@ -6,7 +6,7 @@
 /*   By: pauberna <pauberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:32:38 by pauberna          #+#    #+#             */
-/*   Updated: 2024/02/21 14:31:51 by pauberna         ###   ########.fr       */
+/*   Updated: 2024/02/23 16:34:34 by pauberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	flood_fill(char	**map, int x, int y)
 	height = get_map_height(map);
 	if (x < 0 || x >= width || y < 0 || y >= height)
 		return ;
-	if (map[y][x] == '1' || map[y][x] == 'F')
+	if (map[y][x] == '1' || map[y][x] == 'F' || map[y][x] == 'X')
 		return ;
 	map[y][x] = 'F';
 	flood_fill(map, (x + 1), y);

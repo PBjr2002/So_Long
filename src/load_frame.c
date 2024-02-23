@@ -6,7 +6,7 @@
 /*   By: pauberna <pauberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 10:17:12 by pauberna          #+#    #+#             */
-/*   Updated: 2024/02/21 11:23:31 by pauberna         ###   ########.fr       */
+/*   Updated: 2024/02/23 16:32:59 by pauberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	load_frame(t_vars vars, int move)
 	mlx_hook(vars.win, DestroyNotify, StructureNotifyMask, quit_game, &vars);
 	mlx_hook(vars.win, KeyPress, KeyPressMask, check_key, &vars);
 	move_str = ft_itoa(vars.moves);
-	new_mstr = ft_strjoin("moves : ", move_str);
-	mlx_string_put(vars.mlx, vars.win, 16, 16, (int)0x0cf7ea, new_mstr);
+	new_mstr = ft_strjoin("Moves Counter : ", move_str);
+	mlx_string_put(vars.mlx, vars.win, 10, 32, (int)0xffffff, new_mstr);
 	free(move_str);
 	free(new_mstr);
 	mlx_loop_hook(vars.mlx, repeat_key, &vars);
