@@ -39,6 +39,10 @@ int	main(int ac, char **av)
 		print_error(3);
 	create_player_map(&vars);
 	vars_init(&vars);
+	vars.map = load_map_imgs(&vars);
+	vars.player = load_player_imgs(&vars);
+	vars.bkgrnd = new_img(get_map_width(vars.og_map) * 64,
+			get_map_height(vars.og_map) * 64, vars.mlx, vars.win);
 	load_frame(vars, 2);
 	return (0);
 }

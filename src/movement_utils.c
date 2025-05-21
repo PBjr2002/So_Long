@@ -50,14 +50,10 @@ void	check_move(t_vars *vars, int move, int x, int y)
 	if (x != get_head_x(vars->p_map) || y != get_head_y(vars->p_map))
 	{
 		vars->last_move = move;
-		free_player(vars);
 		load_frame(*vars, move);
 	}
 	else
-	{
-		free_player(vars);
 		load_frame(*vars, vars->last_move);
-	}
 }
 
 int	decide_move(t_vars *vars, int move)

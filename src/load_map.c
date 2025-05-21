@@ -14,19 +14,12 @@
 
 void	load_imgs(t_vars *vars, int move)
 {
-	vars->map = load_map_imgs(vars);
-	vars->player = load_player_imgs(vars);
-	vars->bkgrnd = new_img(get_map_width(vars->og_map) * 64,
-			get_map_height(vars->og_map) * 64, vars->mlx, vars->win);
 	load_bkgrnd(vars->og_map, vars->map, vars->bkgrnd);
 	if (vars->player_size == 1)
 		load_layer2(vars, DOWN);
 	else
 		load_layer2(vars, move);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->bkgrnd->img, 0, 0);
-	free_map_imgs(vars->mlx, vars->map);
-	mlx_destroy_image(vars->mlx, vars->bkgrnd->img);
-	free(vars->bkgrnd);
 }
 
 void	load_bkgrnd(char **map, t_map *img, t_imgs *bkgrnd)

@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -g -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror -O3
 NAME = so_long
 
 SRC = $(addprefix src/, $(SOURCES))

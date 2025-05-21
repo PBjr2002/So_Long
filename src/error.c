@@ -52,6 +52,9 @@ void	ft_clear_lst(t_list *pos)
 
 int	quit_game(t_vars *vars, int signal)
 {
+	free_map_imgs(vars->mlx, vars->map);
+	mlx_destroy_image(vars->mlx, vars->bkgrnd->img);
+	free(vars->bkgrnd);
 	free(vars->timer);
 	free_player(vars);
 	ft_clear_lst(vars->pos);
