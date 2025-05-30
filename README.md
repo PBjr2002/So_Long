@@ -32,7 +32,7 @@ The project focused on:
 
 ## Demonstration
 
-![Gameplay Demo](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbGdsa2I2NnJmNnkzMGluY3JodXdhY21xaGdxbGlrcWp0anNzbHV5ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3t8PCupffwkwGvgiUk/giphy.gif)
+![Gameplay Demo](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExYTFrMXBwN3V6aXBta3R0dmM2bnNvZ3FvZHY2d3NwMmt5NnZqZTd4MiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/leBjDLop60leRCDMlp/giphy.gif)
 
 <!-- 
 🎥 Add a gameplay GIF or video preview here later. 
