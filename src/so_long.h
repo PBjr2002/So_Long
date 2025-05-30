@@ -32,7 +32,7 @@
 # define LEFT		3
 # define RIGHT		4
 
-# define FRAME_R	12
+# define FRAME_R	10
 
 typedef struct s_imgs
 {
