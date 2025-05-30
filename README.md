@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-**So_Long** was a 2D tile-based game developed as part of the 42 programming school curriculum. The goal of the project extended beyond simply making a game — it involved building a **custom game engine** from scratch using **MiniLibX**, a lightweight graphical library. This required handling input, graphics, map parsing, and game logic, all at a low level in C.
+**So_Long** is a 2D tile-based game developed as part of the 42 programming school curriculum. The goal of the project extended beyond simply making a game — it involved building a **custom game engine** from scratch using **MiniLibX**, a lightweight graphical library. This required handling input, graphics, map parsing, and game logic, all at a low level in C.
 
 The game concept was inspired by **classic snake mechanics**: the player character **grows longer each time it collects an item**, and the game ends if the player collides with its own body or touches an enemy. This added a strategic layer to the gameplay, requiring careful navigation of the map.
 
