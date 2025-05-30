@@ -32,6 +32,8 @@ The project focused on:
 
 ## Demonstration
 
+![Gameplay Demo](./.gif/so_long-2025-05-30_11.37.50.gif)
+
 <!-- 
 🎥 Add a gameplay GIF or video preview here later. 
 You can use a screen recording tool (like OBS or Peek), convert it to GIF or upload the video directly.
